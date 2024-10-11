@@ -9,3 +9,12 @@
 .scrollbar-hide{
     scrollbar-width: none;
 }
+
+@font-face {
+    font-family: 'Inter';
+    src: url('/fonts/inter-all-400-normal.woff2') format('woff2'),
+         url('/fonts/inter-all-400-normal.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+  }
+  

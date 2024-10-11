@@ -3,13 +3,13 @@ import LeftMenu from '@/components/leftMenu/LeftMenu'
 import RightMenu from '@/components/rightMenu/RightMenu'
 import prisma from '@/lib/client'
 import { auth } from '@clerk/nextjs/server'
-import { waitForDebugger } from 'inspector'
 import Image from 'next/image'
 import { notFound } from 'next/navigation'
 import React from 'react'
 
-const Profile = async ({ params }: { params: { username: string } }) => {
 
+
+const ProfilePage = async ({ params }: { params: { username: string } }) => {
   const username = params.username;
 
   const user = await prisma.user.findFirst({
@@ -22,10 +22,10 @@ const Profile = async ({ params }: { params: { username: string } }) => {
           followers: true,
           followings: true,
           posts: true,
-        }
-      }
-    }
-  })
+        },
+      },
+    },
+  });
 
   if (!user) return notFound();
 
@@ -51,7 +51,7 @@ const Profile = async ({ params }: { params: { username: string } }) => {
   return (
     <div className="flex gap-6 pt-6">
       <div className="hidden xl:block w-[20%]">
-        <LeftMenu type='profile' />
+        <LeftMenu type="home" />
       </div>
       <div className="w-full lg:w-[70%] xl:w-[50%]">
         <div className="flex flex-col gap-6">
@@ -91,14 +91,14 @@ const Profile = async ({ params }: { params: { username: string } }) => {
               </div>
             </div>
           </div>
-          <Feed />
+          <Feed username={user.username}/>
         </div>
       </div>
       <div className="hidden lg:block w-[30%]">
-        <RightMenu user = {user} />
+        <RightMenu user={user} />
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Profile
+export default ProfilePage;

@@ -1,8 +1,7 @@
-import React from 'react'
-import Link from 'next/link'
-import Image from 'next/image'
-import ProfileCard from './ProfileCard'
-import Ad from '../Ad'
+import Link from "next/link";
+import Image from "next/image";
+import ProfileCard from "./ProfileCard";
+import Ad from "../Ad";
 
 const LeftMenu = ({ type }: { type: "home" | "profile" }) => {
   return (
@@ -89,9 +88,9 @@ const LeftMenu = ({ type }: { type: "home" | "profile" }) => {
           <span>Settings</span>
         </Link>
       </div>
-      <Ad size="sm" />
+      <Ad size="sm"/>
     </div>
-  )
-}
+  );
+};
 
-export default LeftMenu
+export default LeftMenu;
