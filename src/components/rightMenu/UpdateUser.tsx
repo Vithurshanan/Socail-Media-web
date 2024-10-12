@@ -12,7 +12,10 @@ const UpdateUser = ({ user }: { user: User }) => {
   const [open, setOpen] = useState(false);
   const [cover, setCover] = useState<any>(false);
 
-  const [state, formAction] = useActionState(updateProfile,{success:false,error:false});
+  const [state, formAction] = useActionState(updateProfile, {
+    success: false,
+    error: false,
+  });
 
   const router = useRouter();
 
@@ -56,8 +59,9 @@ const UpdateUser = ({ user }: { user: User }) => {
                     <label htmlFor="">Cover Picture</label>
                     <div className="flex items-center gap-2 cursor-pointer">
                       <Image
-                        src={user.cover || "/noCover.png"}
-                        alt=""
+                        // Ensure `src` is not an empty string
+                        src={cover?.secure_url || user.cover || "/noCover.png"}
+                        alt="Cover Picture"
                         width={48}
                         height={32}
                         className="w-12 h-8 rounded-md object-cover"
@@ -160,7 +164,7 @@ const UpdateUser = ({ user }: { user: User }) => {
                 />
               </div>
             </div>
-            <UpdateButton/>
+            <UpdateButton />
             {state.success && (
               <span className="text-green-500">Profile has been updated!</span>
             )}
